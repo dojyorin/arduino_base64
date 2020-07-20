@@ -5,7 +5,7 @@ Binary based simple Base64 Codec for Arduino.
 # API
 ## `void BASE64::encode(const uint8_t* input, char* output, size_t length)`
 **Arguments**
-- `input`: Receives raw data as a binary array.
+- `input`: Receives raw binary data as a byte array.
 - `output`: Base64 encoded string.
 - `length`: Number of bytes of input data.
 
@@ -39,6 +39,7 @@ Binary based simple Base64 Codec for Arduino.
 
 **Return**
 - Number of bytes after Base64 decoding.
+
 
 # Disclaimer
 According to MIT License.
