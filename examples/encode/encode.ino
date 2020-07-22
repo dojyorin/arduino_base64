@@ -6,10 +6,10 @@ void setup(){
     while(!Serial);
 
     const char* rawData = "foobar";
-    size_t rawSize = strlen(rawData);
+    size_t rawLength = strlen(rawData);
 
-    char encoded[BASE64::encodeLength(rawSize)];
-    BASE64::encode((const uint8_t*)rawData, encoded, rawSize);
+    char encoded[BASE64::encodeLength(rawLength)];
+    BASE64::encode((const uint8_t*)rawData, rawLength, encoded);
 
     Serial.println(encoded);
 }

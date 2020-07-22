@@ -33,12 +33,12 @@ namespace{
 	}
 }
 
-void BASE64::encode(const uint8_t* input, char* output, size_t length){
+void BASE64::encode(const uint8_t* input, size_t inputLength, char* output){
 	uint8_t i = 0;
 	uint8_t a3[3];
 	uint8_t a4[4];
 
-	while(length--){
+	while(inputLength--){
 		a3[i++] = *input++;
 
 		if(i == 3){
@@ -71,17 +71,17 @@ void BASE64::encode(const uint8_t* input, char* output, size_t length){
 	*output = '\0';
 }
 
-size_t BASE64::encodeLength(size_t length){
-	return (length + 2 - ((length + 2) % 3)) / 3 * 4 + 1;
+size_t BASE64::encodeLength(size_t inputLength){
+	return (inputLength + 2 - ((inputLength + 2) % 3)) / 3 * 4 + 1;
 }
 
 void BASE64::decode(const char* input, uint8_t* output){
-	size_t length = strlen(input);
+	size_t inputLength = strlen(input);
 	uint8_t i = 0;
 	uint8_t a3[3];
 	uint8_t a4[4];
 
-	while(length--){
+	while(inputLength--){
 		if(*input == '='){
 			break;
 		}
@@ -121,12 +121,12 @@ void BASE64::decode(const char* input, uint8_t* output){
 }
 
 size_t BASE64::decodeLength(const char* input){
-	size_t length = strlen(input);
+	size_t inputLength = strlen(input);
 	uint8_t eq = 0;
 
-	for(uint32_t i = length - 1; input[i] == '='; i--){
+	for(uint32_t i = inputLength - 1; input[i] == '='; i--){
 		eq++;
 	}
 
-	return 6 * length / 8 - eq;
+	return 6 * inputLength / 8 - eq;
 }

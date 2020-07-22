@@ -6,10 +6,10 @@ Binary based simple Base64 Codec for Arduino.
 ## Encode
 ```c++
 const char* rawData = "foobar";
-size_t rawSize = strlen(rawData);
+size_t rawLength = strlen(rawData);
 
-char encoded[BASE64::encodeLength(rawSize)];
-BASE64::encode((const uint8_t*)rawData, encoded, rawSize);
+char encoded[BASE64::encodeLength(rawLength)];
+BASE64::encode((const uint8_t*)rawData, rawLength, encoded);
 
 Serial.println(encoded);
 ```
@@ -17,21 +17,21 @@ Serial.println(encoded);
 
 ## Decode
 ```c++
-const char* encodedData = "Zm9vYmFy";
+const char* encoded = "Zm9vYmFy";
 
-uint8_t raw[BASE64::decodeLength(encodedData)];
-BASE64::decode(encodedData, raw);
+uint8_t raw[BASE64::decodeLength(encoded)];
+BASE64::decode(encoded, raw);
 
 Serial.println((char*)raw);
 ```
 
 
 # API
-## void BASE64::encode(const uint8_t* input, char* output, size_t length)
+## void BASE64::encode(const uint8_t* input, size_t inputLength, char* output)
 **Arguments**
 - `input`: Receives raw binary data as a byte array.
+- `inputLength`: Number of bytes of input data.
 - `output`: Base64 encoded string.
-- `length`: Number of bytes of input data.
 
 **Return**
 - Nothing.
@@ -40,9 +40,9 @@ Serial.println((char*)raw);
 - If the input data is `char*` string, cast it to `uint8_t*`.
 
 
-## size_t BASE64::encodeLength(size_t length)
+## size_t BASE64::encodeLength(size_t inputLength)
 **Arguments**
-- `length`: Number of bytes of input data.
+- `inputLength`: Number of bytes of input data.
 
 **Return**
 - Number of characters after Base64 encoding.
