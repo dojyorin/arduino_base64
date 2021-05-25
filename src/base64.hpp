@@ -1,5 +1,5 @@
-#ifndef Base64_Header
-#define Base64_Header
+#ifndef base64_hpp
+#define base64_hpp
 
 #include "inttypes.h"
 #include "string.h"
