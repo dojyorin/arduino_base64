@@ -4,16 +4,13 @@ namespace{
     constexpr char alphabets[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
     uint8_t alphabetOf(char search){
-        uint8_t pos = 255;
-
         for(uint8_t i = 0; i < 64; i++){
             if(alphabets[i] == search){
-                pos = i;
-                break;
+                return i;
             }
         }
 
-        return pos;
+        return 255;
     }
 
     void to6x4(uint8_t* input, uint8_t* output){
