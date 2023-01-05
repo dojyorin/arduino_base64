@@ -7,7 +7,7 @@ void setup(){
 
     const char data[] = "foobar";
     size_t dataLength = strlen(data);
-    char result[BASE64::encodeLength(dataLength)] = {};
+    char result[BASE64::encodeLength(dataLength)];
 
     BASE64::encode((const uint8_t*)data, dataLength, result);
 

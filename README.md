@@ -6,7 +6,7 @@ Binary based simple BASE64 Codec for Arduino.
 ```c++
 const char data[] = "foobar";
 size_t dataLength = strlen(data);
-char result[BASE64::encodeLength(dataLength)] = {};
+char result[BASE64::encodeLength(dataLength)];
 
 BASE64::encode((const uint8_t*)data, dataLength, result);
 ```
@@ -14,7 +14,7 @@ BASE64::encode((const uint8_t*)data, dataLength, result);
 ## Decode
 ```c++
 const char data[] = "Zm9vYmFy";
-uint8_t result[BASE64::decodeLength(data)] = {};
+uint8_t result[BASE64::decodeLength(data)];
 
 BASE64::decode(data, result);
 ```

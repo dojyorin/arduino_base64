@@ -6,7 +6,7 @@ void setup(){
     while(!Serial);
 
     const char data[] = "Zm9vYmFy";
-    uint8_t result[BASE64::decodeLength(data)] = {};
+    uint8_t result[BASE64::decodeLength(data)];
 
     BASE64::decode(data, result);
 
