@@ -23,15 +23,13 @@
     },
     "jobs": {
         "test": {
-            "name": "Test: ${{matrix.os}}",
-            "runs-on": "${{matrix.os}}",
+            "name": "Test: ${{matrix.mcu}}",
+            "runs-on": "ubuntu-latest",
             "strategy": {
                 "fail-fast": true,
                 "matrix": {
-                    "os": [
-                        "ubuntu-latest",
-                        "macos-latest",
-                        "windows-latest"
+                    "mcu": [
+                        "adafruit:samd:trinket_m0"
                     ]
                 }
             },
@@ -39,14 +37,17 @@
                 "name": "clone repository",
                 "uses": "actions/checkout@v3"
             }, {
-                "name": "install deno",
-                "uses": "denoland/setup-deno@v1",
+                "name": "compile arduino",
+                "uses": "arduino/compile-sketches@v1",
                 "with": {
-                    "deno-version": "v1.x"
+                    "fqbn": "${{matrix.mcu}}",
+                    "platforms": [{
+                        "name": "arduino:samd"
+                    }, {
+                        "name": "adafruit:samd",
+                        "source-url": "https://adafruit.github.io/arduino-board-index/package_adafruit_index.json"
+                    }]
                 }
-            }, {
-                "name": "run test",
-                "run": "deno test -A ./mod.test.ts"
             }]
         }
     }
