@@ -1,5 +1,4 @@
-#ifndef base64_hpp
-#define base64_hpp
+#pragma once
 
 #include "inttypes.h"
 #include "string.h"
@@ -10,5 +9,3 @@ namespace BASE64{
     void decode(const char* input, uint8_t* output);
     size_t decodeLength(const char* input);
 }
-
-#endif
