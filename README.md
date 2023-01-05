@@ -1,4 +1,4 @@
-# Arduino BASE64 Codec
+# **Arduino BASE64 Codec**
 Binary based simple BASE64 Codec for Arduino.
 
 # Example
