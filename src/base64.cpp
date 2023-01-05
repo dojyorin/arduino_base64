@@ -3,46 +3,46 @@
 namespace{
     constexpr char alphabets[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-    uint8_t alphabetOf(char c){
-        uint8_t result = 0xFF;
+    uint8_t alphabetOf(char search){
+        uint8_t pos = 255;
 
         for(uint8_t i = 0; i < 64; i++){
-            if(alphabets[i] == c){
-                result = i;
+            if(alphabets[i] == search){
+                pos = i;
                 break;
             }
         }
 
-        return result;
+        return pos;
     }
 
-    void a3to4(uint8_t* a3, uint8_t* a4){
-        a4[0] = (a3[0] & 0xFC) >> 2;
-        a4[1] = ((a3[0] & 0x03) << 4) + ((a3[1] & 0xF0) >> 4);
-        a4[2] = ((a3[1] & 0x0F) << 2) + ((a3[2] & 0xC0) >> 6);
-        a4[3] = a3[2] & 0x3F;
+    void to6x4(uint8_t* input, uint8_t* output){
+        output[0] = (input[0] & 0xFC) >> 2;
+        output[1] = ((input[0] & 0x03) << 4) + ((input[1] & 0xF0) >> 4);
+        output[2] = ((input[1] & 0x0F) << 2) + ((input[2] & 0xC0) >> 6);
+        output[3] = input[2] & 0x3F;
     }
 
-    void a4to3(uint8_t* a4, uint8_t* a3){
-        a3[0] = (a4[0] << 2) + ((a4[1] & 0x30) >> 4);
-        a3[1] = ((a4[1] & 0x0F) << 4) + ((a4[2] & 0x3C) >> 2);
-        a3[2] = ((a4[2] & 0x03) << 6) + a4[3];
+    void to8x3(uint8_t* input, uint8_t* output){
+        output[0] = (input[0] << 2) + ((input[1] & 0x30) >> 4);
+        output[1] = ((input[1] & 0x0F) << 4) + ((input[2] & 0x3C) >> 2);
+        output[2] = ((input[2] & 0x03) << 6) + input[3];
     }
 }
 
 void BASE64::encode(const uint8_t* input, size_t inputLength, char* output){
     uint8_t pos = 0;
-    uint8_t a3[3];
-    uint8_t a4[4];
+    uint8_t bit8x3[3] = {};
+    uint8_t bit6x4[4] = {};
 
     while(inputLength--){
-        a3[pos++] = *input++;
+        bit8x3[pos++] = *input++;
 
         if(pos == 3){
-            a3to4(a3, a4);
+            to6x4(bit8x3, bit6x4);
 
             for(uint8_t i = 0; i < 4; i++){
-                *output++ = alphabets[a4[i]];
+                *output++ = alphabets[bit6x4[i]];
             }
 
             pos = 0;
@@ -51,13 +51,13 @@ void BASE64::encode(const uint8_t* input, size_t inputLength, char* output){
 
     if(pos){
         for(uint8_t i = pos; i < 3; i++){
-            a3[i] = 0x00;
+            bit8x3[i] = 0x00;
         }
 
-        a3to4(a3, a4);
+        to6x4(bit8x3, bit6x4);
 
         for(uint8_t i = 0; i < pos + 1; i++){
-            *output++ = alphabets[a4[i]];
+            *output++ = alphabets[bit6x4[i]];
         }
 
         while(pos++ < 3){
@@ -75,21 +75,21 @@ size_t BASE64::encodeLength(size_t inputLength){
 void BASE64::decode(const char* input, uint8_t* output){
     size_t inputLength = strlen(input);
     uint8_t pos = 0;
-    uint8_t a3[3];
-    uint8_t a4[4];
+    uint8_t bit8x3[3] = {};
+    uint8_t bit6x4[4] = {};
 
     while(inputLength--){
         if(*input == '='){
             break;
         }
 
-        a4[pos++] = alphabetOf(*input++);
+        bit6x4[pos++] = alphabetOf(*input++);
 
         if(pos == 4){
-            a4to3(a4, a3);
+            to8x3(bit6x4, bit8x3);
 
             for(uint8_t i = 0; i < 3; i++){
-                *output++ = a3[i];
+                *output++ = bit8x3[i];
             }
 
             pos = 0;
@@ -98,13 +98,13 @@ void BASE64::decode(const char* input, uint8_t* output){
 
     if(pos){
         for(uint8_t i = pos; i < 4; i++){
-            a4[i] = 0x00;
+            bit6x4[i] = 0x00;
         }
 
-        a4to3(a4, a3);
+        to8x3(bit6x4, bit8x3);
 
         for(uint8_t i = 0; i < pos - 1; i++){
-            *output++ = a3[i];
+            *output++ = bit8x3[i];
         }
     }
 }
