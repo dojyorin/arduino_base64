@@ -1,0 +1,53 @@
+{
+    "name": "Test",
+    "on": {
+        "push": {
+            "branches": [
+                "dev"
+            ],
+            "paths-ignore": [
+                ".git*",
+                "**.md"
+            ]
+        },
+        "pull_request": {
+            "branches": [
+                "master",
+                "dev"
+            ],
+            "paths-ignore": [
+                ".git*",
+                "**.md"
+            ]
+        }
+    },
+    "jobs": {
+        "test": {
+            "name": "Test: ${{matrix.os}}",
+            "runs-on": "${{matrix.os}}",
+            "strategy": {
+                "fail-fast": true,
+                "matrix": {
+                    "os": [
+                        "ubuntu-latest",
+                        "macos-latest",
+                        "windows-latest"
+                    ]
+                }
+            },
+            "steps": [{
+                "name": "clone repository",
+                "uses": "actions/checkout@v3"
+            }, {
+                "name": "install deno",
+                "uses": "denoland/setup-deno@v1",
+                "with": {
+                    "deno-version": "v1.x"
+                }
+            }, {
+                "name": "run test",
+                "run": "deno test -A ./mod.test.ts"
+            }]
+        }
+    }
+}
