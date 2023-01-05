@@ -28,36 +28,36 @@ namespace{
 }
 
 void BASE64::encode(const uint8_t* input, size_t inputLength, char* output){
-    uint8_t pos = 0;
+    uint8_t position = 0;
     uint8_t bit8x3[3] = {};
     uint8_t bit6x4[4] = {};
 
     while(inputLength--){
-        bit8x3[pos++] = *input++;
+        bit8x3[position++] = *input++;
 
-        if(pos == 3){
+        if(position == 3){
             to6x4(bit8x3, bit6x4);
 
             for(auto v: bit6x4){
                 *output++ = alphabets[v];
             }
 
-            pos = 0;
+            position = 0;
         }
     }
 
-    if(pos){
-        for(uint8_t i = pos; i < 3; i++){
+    if(position){
+        for(uint8_t i = position; i < 3; i++){
             bit8x3[i] = 0x00;
         }
 
         to6x4(bit8x3, bit6x4);
 
-        for(uint8_t i = 0; i < pos + 1; i++){
+        for(uint8_t i = 0; i < position + 1; i++){
             *output++ = alphabets[bit6x4[i]];
         }
 
-        while(pos++ < 3){
+        while(position++ < 3){
             *output++ = '=';
         }
     }
@@ -71,7 +71,7 @@ size_t BASE64::encodeLength(size_t inputLength){
 
 void BASE64::decode(const char* input, uint8_t* output){
     size_t inputLength = strlen(input);
-    uint8_t pos = 0;
+    uint8_t position = 0;
     uint8_t bit8x3[3] = {};
     uint8_t bit6x4[4] = {};
 
@@ -80,27 +80,27 @@ void BASE64::decode(const char* input, uint8_t* output){
             break;
         }
 
-        bit6x4[pos++] = alphabetOf(*input++);
+        bit6x4[position++] = alphabetOf(*input++);
 
-        if(pos == 4){
+        if(position == 4){
             to8x3(bit6x4, bit8x3);
 
             for(auto v: bit8x3){
                 *output++ = v;
             }
 
-            pos = 0;
+            position = 0;
         }
     }
 
-    if(pos){
-        for(uint8_t i = pos; i < 4; i++){
+    if(position){
+        for(uint8_t i = position; i < 4; i++){
             bit6x4[i] = 0x00;
         }
 
         to8x3(bit6x4, bit8x3);
 
-        for(uint8_t i = 0; i < pos - 1; i++){
+        for(uint8_t i = 0; i < position - 1; i++){
             *output++ = bit8x3[i];
         }
     }
