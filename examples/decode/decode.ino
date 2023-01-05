@@ -5,12 +5,12 @@ void setup(){
     Serial.begin(115200);
     while(!Serial);
 
-    const char* encoded = "Zm9vYmFy";
+    const char data[] = "Zm9vYmFy";
+    uint8_t result[BASE64::decodeLength(data)];
 
-    uint8_t raw[BASE64::decodeLength(encoded)];
-    BASE64::decode(encoded, raw);
+    BASE64::decode(data, result);
 
-    Serial.println((char*)raw);
+    Serial.println((char*)result);
 }
 
 void loop(){}
