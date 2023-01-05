@@ -110,7 +110,9 @@ size_t BASE64::decodeLength(const char* input){
     size_t inputLength = strlen(input);
     uint8_t equal = 0;
 
-    for(size_t i = inputLength - 1; input[i] == '='; i--){
+    input += inputLength - 1;
+
+    while(*input-- == '='){
         equal++;
     }
 
