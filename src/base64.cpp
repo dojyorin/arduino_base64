@@ -38,8 +38,8 @@ void BASE64::encode(const uint8_t* input, size_t inputLength, char* output){
         if(pos == 3){
             to6x4(bit8x3, bit6x4);
 
-            for(uint8_t i = 0; i < 4; i++){
-                *output++ = alphabets[bit6x4[i]];
+            for(auto v: bit6x4){
+                *output++ = alphabets[v];
             }
 
             pos = 0;
@@ -85,8 +85,8 @@ void BASE64::decode(const char* input, uint8_t* output){
         if(pos == 4){
             to8x3(bit6x4, bit8x3);
 
-            for(uint8_t i = 0; i < 3; i++){
-                *output++ = bit8x3[i];
+            for(auto v: bit8x3){
+                *output++ = v;
             }
 
             pos = 0;
