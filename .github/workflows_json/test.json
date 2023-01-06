@@ -35,7 +35,7 @@
                     }, {
                         "vendor": "adafruit",
                         "arch": "samd",
-                        "name": "trinket_m0"
+                        "name": "adafruit_trinket_m0"
                     }, {
                         "vendor": "teensy",
                         "arch": "avr",
@@ -67,7 +67,7 @@
                 "uses": "arduino/compile-sketches@v1",
                 "with": {
                     "fqbn": "${{matrix.board.vendor}}:${{matrix.board.arch}}:${{matrix.board.name}}",
-                    "platforms": "- name: \"${{matrix.board.vendor}}:${{matrix.board.arch}}\"\n  source-url: \"${{matrix.index}}\""
+                    "platforms": "- name: ${{matrix.board.vendor}}:${{matrix.board.arch}}\n  source-url: ${{matrix.index}}"
                 }
             }]
         }
