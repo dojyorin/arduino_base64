@@ -26,7 +26,7 @@ jobs:
                       name: arduino_zero_native
                     - vendor: adafruit
                       arch: samd
-                      name: trinket_m0
+                      name: adafruit_trinket_m0
                     - vendor: teensy
                       arch: avr
                       name: teensy41
@@ -48,5 +48,5 @@ jobs:
               with:
                 fqbn: ${{matrix.board.vendor}}:${{matrix.board.arch}}:${{matrix.board.name}}
                 platforms: |-
-                    - name: "${{matrix.board.vendor}}:${{matrix.board.arch}}"
-                      source-url: "${{matrix.index}}"
+                    - name: ${{matrix.board.vendor}}:${{matrix.board.arch}}
+                      source-url: ${{matrix.index}}
