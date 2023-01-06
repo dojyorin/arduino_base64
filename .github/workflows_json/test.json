@@ -23,14 +23,40 @@
     },
     "jobs": {
         "test": {
-            "name": "Test: ${{matrix.mcu}}",
+            "name": "Test: ${{matrix.board.name}}",
             "runs-on": "ubuntu-latest",
             "strategy": {
                 "fail-fast": true,
                 "matrix": {
-                    "mcu": [
-                        "adafruit:samd:trinket_m0"
-                    ]
+                    "board": [{
+                        "product": "arduino",
+                        "arch": "samd",
+                        "name": "arduino_zero_native"
+                    }, {
+                        "product": "adafruit",
+                        "arch": "samd",
+                        "name": "trinket_m0"
+                    }, {
+                        "product": "teensy",
+                        "arch": "avr",
+                        "name": "teensy41"
+                    }],
+                    "include": [{
+                        "board": {
+                            "product": "arduino",
+                            "index": ""
+                        }
+                    }, {
+                        "board": {
+                            "product": "adafruit",
+                            "index": "https://adafruit.github.io/arduino-board-index/package_adafruit_index.json"
+                        }
+                    }, {
+                        "board": {
+                            "product": "teensy",
+                            "index": "https://www.pjrc.com/teensy/package_teensy_index.json"
+                        }
+                    }]
                 }
             },
             "steps": [{
@@ -40,12 +66,10 @@
                 "name": "compile arduino",
                 "uses": "arduino/compile-sketches@v1",
                 "with": {
-                    "fqbn": "${{matrix.mcu}}",
+                    "fqbn": "${{matrix.board.product}}:${{matrix.board.arch}}:${{matrix.board.name}}",
                     "platforms": [{
-                        "name": "arduino:samd"
-                    }, {
-                        "name": "adafruit:samd",
-                        "source-url": "https://adafruit.github.io/arduino-board-index/package_adafruit_index.json"
+                        "name": "${{matrix.board.product}}:${{matrix.board.arch}}",
+                        "source-url": "${{matrix.board.index}}"
                     }]
                 }
             }]
