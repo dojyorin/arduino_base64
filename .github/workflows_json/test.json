@@ -67,7 +67,7 @@
                 "uses": "arduino/compile-sketches@v1",
                 "with": {
                     "fqbn": "${{matrix.board.vendor}}:${{matrix.board.arch}}:${{matrix.board.name}}",
-                    "platforms": "- name: ${{matrix.board.vendor}}:${{matrix.board.arch}}\nsource-url: ${{matrix.index}}"
+                    "platforms": "- name: \"${{matrix.board.vendor}}:${{matrix.board.arch}}\"\nsource-url: \"${{matrix.index}}\""
                 }
             }]
         }
