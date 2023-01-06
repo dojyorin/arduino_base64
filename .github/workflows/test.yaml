@@ -47,6 +47,3 @@ jobs:
               uses: arduino/compile-sketches@v1
               with:
                 fqbn: ${{matrix.board.product}}:${{matrix.board.arch}}:${{matrix.board.name}}
-                platforms:
-                    - name: ${{matrix.board.product}}:${{matrix.board.arch}}
-                      source-url: ${{matrix.board.index}}
