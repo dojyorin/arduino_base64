@@ -42,19 +42,19 @@
                         "name": "teensy41"
                     }],
                     "include": [{
+                        "index": "",
                         "board": {
-                            "vendor": "arduino",
-                            "index": ""
+                            "vendor": "arduino"
                         }
                     }, {
+                        "index": "https://adafruit.github.io/arduino-board-index/package_adafruit_index.json",
                         "board": {
-                            "vendor": "adafruit",
-                            "index": "https://adafruit.github.io/arduino-board-index/package_adafruit_index.json"
+                            "vendor": "adafruit"
                         }
                     }, {
+                        "index": "https://www.pjrc.com/teensy/package_teensy_index.json",
                         "board": {
-                            "vendor": "teensy",
-                            "index": "https://www.pjrc.com/teensy/package_teensy_index.json"
+                            "vendor": "teensy"
                         }
                     }]
                 }
@@ -67,7 +67,7 @@
                 "uses": "arduino/compile-sketches@v1",
                 "with": {
                     "fqbn": "${{matrix.board.vendor}}:${{matrix.board.arch}}:${{matrix.board.name}}",
-                    "platforms": "- name: ${{matrix.board.vendor}}:${{matrix.board.arch}}\nsource-url: ${{matrix.board.vendor}}:${{matrix.board.arch}}"
+                    "platforms": "- name: ${{matrix.board.vendor}}:${{matrix.board.arch}}\nsource-url: ${{matrix.index}}"
                 }
             }]
         }
