@@ -42,7 +42,7 @@
                         "name": "teensy41"
                     }],
                     "include": [{
-                        "index": "",
+                        "index": "https://downloads.arduino.cc/packages/package_index.json",
                         "board": {
                             "vendor": "arduino"
                         }
