@@ -31,15 +31,15 @@ jobs:
                       arch: avr
                       name: teensy41
                 include:
-                    - board:
+                    - index: ""
+                      board:
                         vendor: arduino
-                        index: ""
-                    - board:
+                    - index: https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
+                      board:
                         vendor: adafruit
-                        index: https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
-                    - board:
+                    - index: https://www.pjrc.com/teensy/package_teensy_index.json
+                      board:
                         vendor: teensy
-                        index: https://www.pjrc.com/teensy/package_teensy_index.json
         steps:
             - name: clone repository
               uses: actions/checkout@v3
@@ -47,6 +47,6 @@ jobs:
               uses: arduino/compile-sketches@v1
               with:
                 fqbn: ${{matrix.board.vendor}}:${{matrix.board.arch}}:${{matrix.board.name}}
-                platforms: |-
+                platforms: |
                     - name: ${{matrix.board.vendor}}:${{matrix.board.arch}}
-                    source-url: ${{matrix.board.vendor}}:${{matrix.board.arch}}
+                    source-url: ${{matrix.index}}
