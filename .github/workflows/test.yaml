@@ -31,7 +31,7 @@ jobs:
                       arch: avr
                       name: teensy41
                 include:
-                    - index: ""
+                    - index: https://downloads.arduino.cc/packages/package_index.json
                       board:
                         vendor: arduino
                     - index: https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
