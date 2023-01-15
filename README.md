@@ -1,65 +1,55 @@
-# Arduino Base64 Codec
-Binary based simple Base64 Codec for Arduino.
+# **Arduino BASE64 Codec**
+Binary based simple BASE64 Codec for Arduino.
 
 # Example
 ## Encode
 ```c++
-const char* rawData = "foobar";
-size_t rawLength = strlen(rawData);
+const char data[] = "foobar";
+size_t dataLength = strlen(data);
+char result[BASE64::encodeLength(dataLength)];
 
-char encoded[BASE64::encodeLength(rawLength)];
-BASE64::encode((const uint8_t*)rawData, rawLength, encoded);
-
-Serial.println(encoded);
+BASE64::encode((const uint8_t*)data, dataLength, result);
 ```
 
 ## Decode
 ```c++
-const char* encoded = "Zm9vYmFy";
+const char data[] = "Zm9vYmFy";
+uint8_t result[BASE64::decodeLength(data)];
 
-uint8_t raw[BASE64::decodeLength(encoded)];
-BASE64::decode(encoded, raw);
-
-Serial.println((char*)raw);
+BASE64::decode(data, result);
 ```
 
 # API
-## void BASE64::encode(const uint8_t* input, size_t inputLength, char* output)
-**Arguments**
-- `input`: Receives raw binary data as a byte array.
-- `inputLength`: Number of bytes of input data.
-- `output`: Base64 encoded string.
+## `BASE64::encode()`
+- Arguments
+    - `input` : `const uint8_t*` ... Binary data.
+    - `inputLength` : `size_t` ... Number of bytes of input data.
+    - `output` : `char*` ... BASE64 encoded string.
+- Result
+    - `void`
 
-**Return**
-- Nothing.
+If the input data is string such as `char*`, cast it to `uint8_t*`.
 
-**Note**
-- If the input data is `char*` string, cast it to `uint8_t*`.
+## `BASE64::encodeLength()`
+- Arguments
+    - `inputLength` : `size_t` ... Number of bytes of input data.
+- Result
+    - `size_t` ... Number of characters after BASE64 encoding.
 
-## size_t BASE64::encodeLength(size_t inputLength)
-**Arguments**
-- `inputLength`: Number of bytes of input data.
+## `BASE64::decode()`
+- Arguments
+    - `input` : `const char*` ... BASE64 encoded string.
+    - `output` : `uint8_t*` ... Binary data.
+- Result
+    - `void`
 
-**Return**
-- Number of characters after Base64 encoding.
+If the output data is string, you can cast it to `char*`.
 
-## void BASE64::decode(const char* input, uint8_t* output)
-**Arguments**
-- `input`: Receives string data as a base64 encoded.
-- `output`: Raw binary data.
-
-**Return**
-- Nothing.
-
-**Note**
-- If the output data is string, you can cast it to `char*`.
-
-## size_t BASE64::decodeLength(const char* input)
-**Arguments**
-- `input`: Receives string data as a base64 encoded.
-
-**Return**
-- Number of bytes after Base64 decoding.
+## `BASE64::decodeLength()`
+- Arguments
+    - `input` : `const char*` ... BASE64 encoded string.
+- Result
+    - `size_t` ... Number of bytes after BASE64 decoding.
 
 # Disclaimer
 According to MIT License.

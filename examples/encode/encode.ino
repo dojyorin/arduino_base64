@@ -5,13 +5,13 @@ void setup(){
     Serial.begin(115200);
     while(!Serial);
 
-    const char* rawData = "foobar";
-    size_t rawLength = strlen(rawData);
+    const char data[] = "foobar";
+    size_t dataLength = strlen(data);
+    char result[BASE64::encodeLength(dataLength)];
 
-    char encoded[BASE64::encodeLength(rawLength)];
-    BASE64::encode((const uint8_t*)rawData, rawLength, encoded);
+    BASE64::encode((const uint8_t*)data, dataLength, result);
 
-    Serial.println(encoded);
+    Serial.println(result);
 }
 
 void loop(){}

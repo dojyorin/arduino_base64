@@ -1,0 +1,54 @@
+name: Test
+"on":
+    push:
+        branches:
+            - dev
+        paths-ignore:
+            - .git*
+            - '**.md'
+            - '*.properties'
+    pull_request:
+        branches:
+            - master
+            - dev
+        paths-ignore:
+            - .git*
+            - '**.md'
+            - '*.properties'
+jobs:
+    test:
+        name: 'Test: ${{matrix.board.name}}'
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: true
+            matrix:
+                board:
+                    - vendor: arduino
+                      arch: samd
+                      name: arduino_zero_native
+                    - vendor: adafruit
+                      arch: samd
+                      name: adafruit_trinket_m0
+                    - vendor: teensy
+                      arch: avr
+                      name: teensy41
+                include:
+                    - index: https://downloads.arduino.cc/packages/package_index.json
+                      board:
+                        vendor: arduino
+                    - index: https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
+                      board:
+                        vendor: adafruit
+                    - index: https://www.pjrc.com/teensy/package_teensy_index.json
+                      board:
+                        vendor: teensy
+        steps:
+            - name: clone repository
+              uses: actions/checkout@v3
+            - name: install arduino and run test
+              uses: arduino/compile-sketches@v1
+              with:
+                fqbn: ${{matrix.board.vendor}}:${{matrix.board.arch}}:${{matrix.board.name}}
+                platforms: |-
+                    - name: ${{matrix.board.vendor}}:${{matrix.board.arch}}
+                      source-url: ${{matrix.index}}
