@@ -1,0 +1,30 @@
+16:31:24.236 -> Serial port initialized...
+16:31:24.236 -> Demo program to encode original string and then decode it back using Base64
+16:31:25.273 -> *******************************************************************
+16:31:25.273 -> Original String: {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:31:25.273 -> Encoded string : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:31:26.268 -> Secret String  : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:31:26.268 -> Decoded string : {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:31:26.305 -> *******************************************************************
+16:31:26.305 -> 
+16:31:36.271 -> *******************************************************************
+16:31:36.271 -> Original String: {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:31:36.271 -> Encoded string : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:31:37.255 -> Secret String  : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:31:37.289 -> Decoded string : {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:31:37.289 -> *******************************************************************
+16:31:37.289 -> 
+16:31:47.254 -> *******************************************************************
+16:31:47.254 -> Original String: {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:31:47.305 -> Encoded string : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:31:48.276 -> Secret String  : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:31:48.276 -> Decoded string : {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:31:48.319 -> *******************************************************************
+16:31:48.319 -> 
+16:31:58.262 -> *******************************************************************
+16:31:58.262 -> Original String: {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:31:58.315 -> Encoded string : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:31:59.254 -> Secret String  : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:31:59.300 -> Decoded string : {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:31:59.300 -> *******************************************************************
+16:31:59.300 -> 
