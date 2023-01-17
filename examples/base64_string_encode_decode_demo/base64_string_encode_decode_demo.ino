@@ -1,3 +1,8 @@
+/*
+  Demo code to encode and decode a String usign Base64.
+  Author: Abhay Bharadwaj (https://github.com/abhaysbharadwaj/)
+*/
+
 #include "base64.hpp"
 
 //original plain text that needs encoding.
