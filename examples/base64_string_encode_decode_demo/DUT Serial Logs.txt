@@ -1,0 +1,16 @@
+16:45:08.589 -> Serial port initialized...
+16:45:08.589 -> Demo program to encode original string and then decode it back using Base64
+16:45:09.623 -> *******************************************************************
+16:45:09.623 -> Original String: {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:45:09.623 -> Encoded string : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:45:10.623 -> Secret String  : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:45:10.623 -> Decoded string : {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:45:10.659 -> *******************************************************************
+16:45:10.659 -> 
+16:45:20.624 -> *******************************************************************
+16:45:20.624 -> Original String: {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:45:20.624 -> Encoded string : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:45:21.592 -> Secret String  : eyJkZXZpY2Vfc3RhdHVzIjoxLCJmdHBfcG9ydCI6OTkwLCJmdHBfdXJsIjoiZnRwOi8vaW50ZXJuZXQuYWRkcmVzcy5lZHUiLCJjbGllbnRJZCI6IkFCQ0QxMjM0IiwidXNlcm5hbWUiOiJBQkNEMTIzNCIsInBhc3N3b3JkIjoiQUJDRDEyMzQiLCJTZWNyZXRUb2tlbiI6IkFCQ0QxMjM0IiwiU2xlZXBUaW1lX3NlYyI6ODY0MDB9
+16:45:21.625 -> Decoded string : {"device_status":1,"ftp_port":990,"ftp_url":"ftp://internet.address.edu","clientId":"ABCD1234","username":"ABCD1234","password":"ABCD1234","SecretToken":"ABCD1234","SleepTime_sec":86400}
+16:45:21.658 -> *******************************************************************
+16:45:21.658 -> 
