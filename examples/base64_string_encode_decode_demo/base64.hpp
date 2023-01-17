@@ -1,8 +1,9 @@
 /**
    Base64 encoding and decoding of strings. Uses '+' for 62, '/' for 63, '=' for padding
-
+   Original: https://github.com/Densaugeo/base64_arduino
+   
    Modified by: Abhay Bharadwaj (https://github.com/abhaysbharadwaj/)
-   Library will not handle taking input from a "String variable" and return results in "String"
+   Library will now handle taking input from a "String variable" and return results in "String"
 
 */
 
