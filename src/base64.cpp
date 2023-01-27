@@ -1,5 +1,8 @@
 #include "./base64.hpp"
 
+#include "inttypes.h"
+#include "string.h"
+
 namespace{
     constexpr char alphabets[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -27,94 +30,96 @@ namespace{
     }
 }
 
-void BASE64::encode(const uint8_t* input, size_t inputLength, char* output){
-    uint8_t position = 0;
-    uint8_t bit8x3[3] = {};
-    uint8_t bit6x4[4] = {};
+namespace BASE64{
+    void encode(const uint8_t* input, size_t inputLength, char* output){
+        uint8_t position = 0;
+        uint8_t bit8x3[3] = {};
+        uint8_t bit6x4[4] = {};
 
-    while(inputLength--){
-        bit8x3[position++] = *input++;
+        while(inputLength--){
+            bit8x3[position++] = *input++;
 
-        if(position == 3){
+            if(position == 3){
+                to6x4(bit8x3, bit6x4);
+
+                for(auto v: bit6x4){
+                    *output++ = alphabets[v];
+                }
+
+                position = 0;
+            }
+        }
+
+        if(position){
+            for(uint8_t i = position; i < 3; i++){
+                bit8x3[i] = 0x00;
+            }
+
             to6x4(bit8x3, bit6x4);
 
-            for(auto v: bit6x4){
-                *output++ = alphabets[v];
+            for(uint8_t i = 0; i < position + 1; i++){
+                *output++ = alphabets[bit6x4[i]];
             }
 
-            position = 0;
+            while(position++ < 3){
+                *output++ = '=';
+            }
         }
+
+        *output = '\0';
     }
 
-    if(position){
-        for(uint8_t i = position; i < 3; i++){
-            bit8x3[i] = 0x00;
-        }
-
-        to6x4(bit8x3, bit6x4);
-
-        for(uint8_t i = 0; i < position + 1; i++){
-            *output++ = alphabets[bit6x4[i]];
-        }
-
-        while(position++ < 3){
-            *output++ = '=';
-        }
+    size_t encodeLength(size_t inputLength){
+        return (inputLength + 2 - ((inputLength + 2) % 3)) / 3 * 4 + 1;
     }
 
-    *output = '\0';
-}
+    void decode(const char* input, uint8_t* output){
+        size_t inputLength = strlen(input);
+        uint8_t position = 0;
+        uint8_t bit8x3[3] = {};
+        uint8_t bit6x4[4] = {};
 
-size_t BASE64::encodeLength(size_t inputLength){
-    return (inputLength + 2 - ((inputLength + 2) % 3)) / 3 * 4 + 1;
-}
+        while(inputLength--){
+            if(*input == '='){
+                break;
+            }
 
-void BASE64::decode(const char* input, uint8_t* output){
-    size_t inputLength = strlen(input);
-    uint8_t position = 0;
-    uint8_t bit8x3[3] = {};
-    uint8_t bit6x4[4] = {};
+            bit6x4[position++] = alphabetOf(*input++);
 
-    while(inputLength--){
-        if(*input == '='){
-            break;
+            if(position == 4){
+                to8x3(bit6x4, bit8x3);
+
+                for(auto v: bit8x3){
+                    *output++ = v;
+                }
+
+                position = 0;
+            }
         }
 
-        bit6x4[position++] = alphabetOf(*input++);
+        if(position){
+            for(uint8_t i = position; i < 4; i++){
+                bit6x4[i] = 0x00;
+            }
 
-        if(position == 4){
             to8x3(bit6x4, bit8x3);
 
-            for(auto v: bit8x3){
-                *output++ = v;
+            for(uint8_t i = 0; i < position - 1; i++){
+                *output++ = bit8x3[i];
             }
-
-            position = 0;
         }
     }
 
-    if(position){
-        for(uint8_t i = position; i < 4; i++){
-            bit6x4[i] = 0x00;
+    size_t decodeLength(const char* input){
+        size_t inputLength = strlen(input);
+        uint8_t equal = 0;
+
+        input += inputLength - 1;
+
+        while(*input-- == '='){
+            equal++;
         }
 
-        to8x3(bit6x4, bit8x3);
-
-        for(uint8_t i = 0; i < position - 1; i++){
-            *output++ = bit8x3[i];
-        }
+        return 6 * inputLength / 8 - equal;
     }
-}
-
-size_t BASE64::decodeLength(const char* input){
-    size_t inputLength = strlen(input);
-    uint8_t equal = 0;
-
-    input += inputLength - 1;
-
-    while(*input-- == '='){
-        equal++;
-    }
-
-    return 6 * inputLength / 8 - equal;
 }
