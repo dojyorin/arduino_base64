@@ -40,7 +40,7 @@ namespace BASE64{
             if(position == 3){
                 to6x4(bit8x3, bit6x4);
 
-                for(auto v: bit6x4){
+                for(const auto &v: bit6x4){
                     *output++ = alphabets[v];
                 }
 
@@ -87,7 +87,7 @@ namespace BASE64{
             if(position == 4){
                 to8x3(bit6x4, bit8x3);
 
-                for(auto v: bit8x3){
+                for(const auto &v: bit8x3){
                     *output++ = v;
                 }
 
