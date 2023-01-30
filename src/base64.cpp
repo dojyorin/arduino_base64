@@ -1,7 +1,7 @@
-#include "./base64.hpp"
-
 #include "inttypes.h"
 #include "string.h"
+
+#include "./base64.hpp"
 
 namespace{
     constexpr char alphabets[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
