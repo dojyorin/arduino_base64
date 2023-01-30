@@ -1,5 +1,5 @@
-#include "../deps.h"
 #include "./base64.hpp"
+#include "../deps.h"
 
 namespace{
     constexpr char alphabets[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
