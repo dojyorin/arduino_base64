@@ -2,11 +2,11 @@
 #include "../deps.h"
 
 namespace{
-    constexpr char alphabets[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    constexpr char token[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-    uint8_t alphabetOf(char search){
+    uint8_t tokenOf(char search){
         for(uint8_t i = 0; i < 64; i++){
-            if(alphabets[i] == search){
+            if(token[i] == search){
                 return i;
             }
         }
@@ -41,7 +41,7 @@ namespace BASE64{
                 to6x4(bit8x3, bit6x4);
 
                 for(const auto &v: bit6x4){
-                    *output++ = alphabets[v];
+                    *output++ = token[v];
                 }
 
                 position = 0;
@@ -56,7 +56,7 @@ namespace BASE64{
             to6x4(bit8x3, bit6x4);
 
             for(uint8_t i = 0; i < position + 1; i++){
-                *output++ = alphabets[bit6x4[i]];
+                *output++ = token[bit6x4[i]];
             }
 
             while(position++ < 3){
@@ -82,7 +82,7 @@ namespace BASE64{
                 break;
             }
 
-            bit6x4[position++] = alphabetOf(*input++);
+            bit6x4[position++] = tokenOf(*input++);
 
             if(position == 4){
                 to8x3(bit6x4, bit8x3);
