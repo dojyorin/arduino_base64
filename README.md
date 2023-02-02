@@ -1,29 +1,31 @@
 # **Arduino BASE64 Codec**
 Binary based simple BASE64 Codec for Arduino.
 
-**Note!**
-
-This is library made to convert binary data (e.g. raw sensor values) to BASE64.
-String can be convert by cast them to byte arrays, but that's not what this library is for, nor do we plan to provide a means.
-If you want to convert string, use this library and implement the wrapper functions yourself.
-
 # Example
 ## Encode
 ```c++
-const char data[] = "foobar";
-size_t dataLength = strlen(data);
+const uint8_t data[] = {0x17, 0x77, 0x3B, 0x11, 0x82, 0xA4, 0xC4, 0xC8, 0x27, 0xBC, 0xED, 0x27, 0x07, 0xC1, 0x56, 0x57};
+auto dataLength = sizeof(data);
 char result[BASE64::encodeLength(dataLength)];
 
-BASE64::encode((const uint8_t*)data, dataLength, result);
+BASE64::encode(data, dataLength, result);
 ```
 
 ## Decode
 ```c++
-const char data[] = "Zm9vYmFy";
+const char data[] = "F3c7EYKkxMgnvO0nB8FWVw==";
 uint8_t result[BASE64::decodeLength(data)];
 
 BASE64::decode(data, result);
 ```
+
+# Details
+The only export of this library will be `mod.(reponame).hpp`.
+Other source files are for internal use and should not normally be include.
+
+This is library made to convert binary data (e.g. raw sensor values) to BASE64.
+String can be convert by cast them to byte arrays, but that's not what this library is for, nor do we plan to provide a means.
+If you want to convert string, use this library and implement the wrapper functions yourself.
 
 # API
 ## `BASE64::encode()`
