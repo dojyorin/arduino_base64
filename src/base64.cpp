@@ -1,5 +1,4 @@
 #include "./base64.hpp"
-#include "./deps.arduino_base64.hpp"
 
 namespace{
     constexpr char token[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
