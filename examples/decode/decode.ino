@@ -9,7 +9,7 @@ void setup(){
 
     BASE64::decode(data, result);
 
-    Serial.println(result);
+    Serial.println((const char*)result);
 }
 
 void loop(){}
