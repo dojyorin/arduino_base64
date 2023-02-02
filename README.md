@@ -1,4 +1,7 @@
 # **Arduino BASE64 Codec**
+![Actions-Test](https://github.com/dojyorin/arduino_base64/actions/workflows/test.yaml/badge.svg)
+![Actions-Release](https://github.com/dojyorin/arduino_base64/actions/workflows/release.yaml/badge.svg)
+
 Binary based simple BASE64 Codec for Arduino.
 
 # Example
