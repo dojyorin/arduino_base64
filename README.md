@@ -5,7 +5,7 @@ Binary based simple BASE64 Codec for Arduino.
 
 This is library made to convert binary data (e.g. raw sensor values) to BASE64.
 String can be convert by cast them to byte arrays, but that's not what this library is for, nor do we plan to provide a means.
-If you want to convert string, use this library and implement your own wrapper functions.
+If you want to convert string, use this library and implement the wrapper functions yourself.
 
 # Example
 ## Encode
@@ -56,6 +56,3 @@ If the output data is string, you can cast it to `char*`.
     - `input` : `const char*` ... BASE64 encoded string.
 - Result
     - `size_t` ... Number of bytes after BASE64 decoding.
-
-# Disclaimer
-According to MIT License.
