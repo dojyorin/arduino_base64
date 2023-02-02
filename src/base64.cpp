@@ -72,7 +72,7 @@ namespace BASE64{
     }
 
     void decode(const char* input, uint8_t* output){
-        size_t inputLength = strlen(input);
+        auto inputLength = strlen(input);
         uint8_t position = 0;
         uint8_t bit8x3[3] = {};
         uint8_t bit6x4[4] = {};
@@ -109,7 +109,7 @@ namespace BASE64{
     }
 
     size_t decodeLength(const char* input){
-        size_t inputLength = strlen(input);
+        auto inputLength = strlen(input);
         uint8_t equal = 0;
 
         input += inputLength - 1;
