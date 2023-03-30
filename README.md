@@ -1,8 +1,9 @@
-# **Arduino BASE64 Codec**
-![Actions-Test](https://github.com/dojyorin/arduino_base64/actions/workflows/test.yaml/badge.svg)
-![Actions-Release](https://github.com/dojyorin/arduino_base64/actions/workflows/release.yaml/badge.svg)
+# **Arduino BASE64**
+![actions:test](https://github.com/dojyorin/arduino_base64/actions/workflows/test.yaml/badge.svg)
+![actions:release](https://github.com/dojyorin/arduino_base64/actions/workflows/release.yaml/badge.svg)
 
-Binary based simple BASE64 Codec for Arduino.
+Convert between binary and BASE64.
+Easily convert sensor raw values, structures, etc.
 
 # Example
 ## Encode

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "./deps.arduino_base64.hpp"
+#include "stdint.h"
+#include "string.h"
 
 namespace BASE64{
     void encode(const uint8_t* input, size_t inputLength, char* output);
