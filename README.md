@@ -32,7 +32,7 @@ String can be convert by cast them to byte arrays, but that's not what this libr
 If you want to convert string, use this library and implement the wrapper functions yourself.
 
 # API
-## `BASE64::encode()`
+## `BASE64::encode(input, inputLength, output)`
 - Arguments
     - `input` : `const uint8_t*` ... Binary data.
     - `inputLength` : `size_t` ... Number of bytes of input data.
@@ -42,13 +42,13 @@ If you want to convert string, use this library and implement the wrapper functi
 
 If the input data is string such as `char*`, cast it to `uint8_t*`.
 
-## `BASE64::encodeLength()`
+## `BASE64::encodeLength(inputLength)`
 - Arguments
     - `inputLength` : `size_t` ... Number of bytes of input data.
 - Result
     - `size_t` ... Number of characters after BASE64 encoding.
 
-## `BASE64::decode()`
+## `BASE64::decode(input, output)`
 - Arguments
     - `input` : `const char*` ... BASE64 encoded string.
     - `output` : `uint8_t*` ... Binary data.
@@ -57,7 +57,7 @@ If the input data is string such as `char*`, cast it to `uint8_t*`.
 
 If the output data is string, you can cast it to `char*`.
 
-## `BASE64::decodeLength()`
+## `BASE64::decodeLength(input)`
 - Arguments
     - `input` : `const char*` ... BASE64 encoded string.
 - Result
