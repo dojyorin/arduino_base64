@@ -55,7 +55,7 @@ If the input is string, cast it to `uint8_t*`.
 - Result
     - `void`
 
-If the output is string, you can cast it to `char*`.
+If the output is string, cast it to `char*`.
 
 ## `BASE64::decodeLength(input)`
 - Arguments

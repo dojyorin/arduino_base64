@@ -26,7 +26,7 @@ namespace BASE64{
 
     /**
     * Convert BASE64 to binary.
-    * If the output is string, you can cast it to `char*`.
+    * If the output is string, cast it to `char*`.
     * @param input BASE64 encoded string.
     * @param output Binary data.
     */
