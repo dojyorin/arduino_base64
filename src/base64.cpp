@@ -1,11 +1,11 @@
-#include "./base64.hpp"
+#include "./arduino_base64.hpp"
 
 namespace{
-    constexpr char alphabets[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    constexpr char token[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-    uint8_t alphabetOf(char search){
+    uint8_t tokenOf(char search){
         for(uint8_t i = 0; i < 64; i++){
-            if(alphabets[i] == search){
+            if(token[i] == search){
                 return i;
             }
         }
@@ -38,8 +38,8 @@ void BASE64::encode(const uint8_t* input, size_t inputLength, char* output){
         if(position == 3){
             to6x4(bit8x3, bit6x4);
 
-            for(auto v: bit6x4){
-                *output++ = alphabets[v];
+            for(const auto &v: bit6x4){
+                *output++ = token[v];
             }
 
             position = 0;
@@ -54,7 +54,7 @@ void BASE64::encode(const uint8_t* input, size_t inputLength, char* output){
         to6x4(bit8x3, bit6x4);
 
         for(uint8_t i = 0; i < position + 1; i++){
-            *output++ = alphabets[bit6x4[i]];
+            *output++ = token[bit6x4[i]];
         }
 
         while(position++ < 3){
@@ -70,7 +70,7 @@ size_t BASE64::encodeLength(size_t inputLength){
 }
 
 void BASE64::decode(const char* input, uint8_t* output){
-    size_t inputLength = strlen(input);
+    auto inputLength = strlen(input);
     uint8_t position = 0;
     uint8_t bit8x3[3] = {};
     uint8_t bit6x4[4] = {};
@@ -80,12 +80,12 @@ void BASE64::decode(const char* input, uint8_t* output){
             break;
         }
 
-        bit6x4[position++] = alphabetOf(*input++);
+        bit6x4[position++] = tokenOf(*input++);
 
         if(position == 4){
             to8x3(bit6x4, bit8x3);
 
-            for(auto v: bit8x3){
+            for(const auto &v: bit8x3){
                 *output++ = v;
             }
 
@@ -107,7 +107,7 @@ void BASE64::decode(const char* input, uint8_t* output){
 }
 
 size_t BASE64::decodeLength(const char* input){
-    size_t inputLength = strlen(input);
+    auto inputLength = strlen(input);
     uint8_t equal = 0;
 
     input += inputLength - 1;
