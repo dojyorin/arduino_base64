@@ -35,18 +35,18 @@ If you want to convert string, use this library and implement the wrapper functi
 ## `BASE64::encode(input, inputLength, output)`
 - Arguments
     - `input` : `const uint8_t*` ... Binary data.
-    - `inputLength` : `size_t` ... Number of bytes of input data.
+    - `inputLength` : `size_t` ... Number of input bytes.
     - `output` : `char*` ... BASE64 encoded string.
 - Result
     - `void`
 
-If the input data is string such as `char*`, cast it to `uint8_t*`.
+If the input is string, cast it to `uint8_t*`.
 
 ## `BASE64::encodeLength(inputLength)`
 - Arguments
-    - `inputLength` : `size_t` ... Number of bytes of input data.
+    - `inputLength` : `size_t` ... Number of input bytes.
 - Result
-    - `size_t` ... Number of characters after BASE64 encoding.
+    - `size_t` ... Number of output characters.
 
 ## `BASE64::decode(input, output)`
 - Arguments
@@ -55,10 +55,10 @@ If the input data is string such as `char*`, cast it to `uint8_t*`.
 - Result
     - `void`
 
-If the output data is string, you can cast it to `char*`.
+If the output is string, you can cast it to `char*`.
 
 ## `BASE64::decodeLength(input)`
 - Arguments
     - `input` : `const char*` ... BASE64 encoded string.
 - Result
-    - `size_t` ... Number of bytes after BASE64 decoding.
+    - `size_t` ... Number of output bytes.
