@@ -24,7 +24,7 @@ BASE64::decode(data, result);
 ```
 
 # Details
-The only export of this library will be [`mod.arduino_base64.hpp`](./src/mod.arduino_base64.hpp).
+The only export of this library will be [`arduino_base64.hpp`](./src/arduino_base64.hpp).
 Other source files are for internal use and should not normally be include.
 
 This is library made to convert binary data (e.g. raw sensor values) to BASE64.
