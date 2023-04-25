@@ -1,33 +1,30 @@
 #include "./arduino_base64.hpp"
 
-namespace
-{
+namespace{
+    constexpr char token[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-constexpr char token[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
-uint8_t tokenOf(char search){
-    for(uint8_t i = 0; i < 64; i++){
-        if(token[i] == search){
-            return i;
+    uint8_t tokenOf(char search){
+        for(uint8_t i = 0; i < 64; i++){
+            if(token[i] == search){
+                return i;
+            }
         }
+
+        return 255;
     }
 
-    return 255;
-}
+    void to6x4(uint8_t* input, uint8_t* output){
+        output[0] = (input[0] & 0xFC) >> 2;
+        output[1] = ((input[0] & 0x03) << 4) + ((input[1] & 0xF0) >> 4);
+        output[2] = ((input[1] & 0x0F) << 2) + ((input[2] & 0xC0) >> 6);
+        output[3] = input[2] & 0x3F;
+    }
 
-void to6x4(uint8_t* input, uint8_t* output){
-    output[0] = (input[0] & 0xFC) >> 2;
-    output[1] = ((input[0] & 0x03) << 4) + ((input[1] & 0xF0) >> 4);
-    output[2] = ((input[1] & 0x0F) << 2) + ((input[2] & 0xC0) >> 6);
-    output[3] = input[2] & 0x3F;
-}
-
-void to8x3(uint8_t* input, uint8_t* output){
-    output[0] = (input[0] << 2) + ((input[1] & 0x30) >> 4);
-    output[1] = ((input[1] & 0x0F) << 4) + ((input[2] & 0x3C) >> 2);
-    output[2] = ((input[2] & 0x03) << 6) + input[3];
-}
-
+    void to8x3(uint8_t* input, uint8_t* output){
+        output[0] = (input[0] << 2) + ((input[1] & 0x30) >> 4);
+        output[1] = ((input[1] & 0x0F) << 4) + ((input[2] & 0x3C) >> 2);
+        output[2] = ((input[2] & 0x03) << 6) + input[3];
+    }
 }
 
 void BASE64::encode(const uint8_t* input, size_t inputLength, char* output){
