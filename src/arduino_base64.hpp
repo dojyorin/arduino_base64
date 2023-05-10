@@ -4,16 +4,16 @@
 #include "string.h"
 
 /**
-* Convert between binary and BASE64.
+* Convert between binary and Base64.
 * @see https://github.com/dojyorin/arduino_base64
 */
-namespace BASE64{
+namespace base64{
     /**
-    * Convert binary to BASE64.
+    * Convert Binary to Base64.
     * If the input is string, cast it to `uint8_t*`.
     * @param input Binary data.
     * @param inputLength Number of input bytes.
-    * @param output BASE64 encoded string.
+    * @param output Base64 encoded string.
     */
     void encode(const uint8_t* input, size_t inputLength, char* output);
 
@@ -25,16 +25,16 @@ namespace BASE64{
     size_t encodeLength(size_t inputLength);
 
     /**
-    * Convert BASE64 to binary.
+    * Convert Base64 to Binary.
     * If the output is string, cast it to `char*`.
-    * @param input BASE64 encoded string.
+    * @param input Base64 encoded string.
     * @param output Binary data.
     */
     void decode(const char* input, uint8_t* output);
 
     /**
     * Calculate the number of output bytes.
-    * @param input BASE64 encoded string.
+    * @param input Base64 encoded string.
     * @return Number of output bytes.
     */
     size_t decodeLength(const char* input);
