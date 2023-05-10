@@ -5,9 +5,9 @@ void setup(){
     while(!Serial);
 
     const char data[] = "F3c7EYKkxMgnvO0nB8FWVw==";
-    uint8_t result[BASE64::decodeLength(data)];
+    uint8_t result[base64::decodeLength(data)];
 
-    BASE64::decode(data, result);
+    base64::decode(data, result);
 
     Serial.println((const char*)result);
 }

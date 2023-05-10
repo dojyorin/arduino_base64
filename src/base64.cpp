@@ -27,7 +27,7 @@ namespace{
     }
 }
 
-void BASE64::encode(const uint8_t* input, size_t inputLength, char* output){
+void base64::encode(const uint8_t* input, size_t inputLength, char* output){
     uint8_t position = 0;
     uint8_t bit8x3[3] = {};
     uint8_t bit6x4[4] = {};
@@ -65,11 +65,11 @@ void BASE64::encode(const uint8_t* input, size_t inputLength, char* output){
     *output = '\0';
 }
 
-size_t BASE64::encodeLength(size_t inputLength){
+size_t base64::encodeLength(size_t inputLength){
     return (inputLength + 2 - ((inputLength + 2) % 3)) / 3 * 4 + 1;
 }
 
-void BASE64::decode(const char* input, uint8_t* output){
+void base64::decode(const char* input, uint8_t* output){
     auto inputLength = strlen(input);
     uint8_t position = 0;
     uint8_t bit8x3[3] = {};
@@ -106,7 +106,7 @@ void BASE64::decode(const char* input, uint8_t* output){
     }
 }
 
-size_t BASE64::decodeLength(const char* input){
+size_t base64::decodeLength(const char* input){
     auto inputLength = strlen(input);
     uint8_t equal = 0;
 
