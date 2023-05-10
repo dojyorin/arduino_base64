@@ -2,7 +2,7 @@
 ![actions:test](https://github.com/dojyorin/arduino_base64/actions/workflows/test.yaml/badge.svg)
 ![actions:release](https://github.com/dojyorin/arduino_base64/actions/workflows/release.yaml/badge.svg)
 
-Convert between binary and Base64.
+Convert between binary and Base64 encoded string.
 Easily convert sensor raw values, structures, etc.
 
 # Example
@@ -27,7 +27,7 @@ base64::decode(data, result);
 The only export of this library will be [`arduino_base64.hpp`](./src/arduino_base64.hpp).
 Other source files are for internal use and should not normally be include.
 
-This is library made to convert binary data (e.g. raw sensor values) to Base64.
+This is library made to convert binary data (e.g. raw sensor values) to Base64 encoded string.
 String can be convert by cast them to byte arrays, but that's not what this library is for, nor do we plan to provide a means.
 If you want to convert string, use this library and implement the wrapper functions yourself.
 
