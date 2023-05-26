@@ -1,16 +1,16 @@
 #include "./arduino_base64.hpp"
 
 namespace{
-    constexpr char token[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    constexpr char symbols[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-    uint8_t tokenOf(char search){
+    uint8_t indexOf(char search){
         for(uint8_t i = 0; i < 64; i++){
-            if(token[i] == search){
+            if(symbols[i] == search){
                 return i;
             }
         }
 
-        return 255;
+        return 0xFF;
     }
 
     void to6x4(uint8_t* input, uint8_t* output){
@@ -39,7 +39,7 @@ void base64::encode(const uint8_t* input, size_t inputLength, char* output){
             to6x4(bit8x3, bit6x4);
 
             for(const auto &v: bit6x4){
-                *output++ = token[v];
+                *output++ = symbols[v];
             }
 
             position = 0;
@@ -54,7 +54,7 @@ void base64::encode(const uint8_t* input, size_t inputLength, char* output){
         to6x4(bit8x3, bit6x4);
 
         for(uint8_t i = 0; i < position + 1; i++){
-            *output++ = token[bit6x4[i]];
+            *output++ = symbols[bit6x4[i]];
         }
 
         while(position++ < 3){
@@ -80,7 +80,7 @@ void base64::decode(const char* input, uint8_t* output){
             break;
         }
 
-        bit6x4[position++] = tokenOf(*input++);
+        bit6x4[position++] = indexOf(*input++);
 
         if(position == 4){
             to8x3(bit6x4, bit8x3);
