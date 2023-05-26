@@ -1,5 +1,5 @@
-name: Test
-"on":
+name: test
+on:
     push:
         branches:
             - dev
