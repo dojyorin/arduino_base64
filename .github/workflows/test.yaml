@@ -1,8 +1,8 @@
 name: test
 on:
     push:
-        branches:
-            - dev
+        branches-ignore:
+            - master
         paths-ignore:
             - .git*
             - '**.md'
@@ -10,7 +10,6 @@ on:
     pull_request:
         branches:
             - master
-            - dev
         paths-ignore:
             - .git*
             - '**.md'

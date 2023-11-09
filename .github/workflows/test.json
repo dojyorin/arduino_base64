@@ -2,8 +2,8 @@
     "name": "test",
     "on": {
         "push": {
-            "branches": [
-                "dev"
+            "branches-ignore": [
+                "master"
             ],
             "paths-ignore": [
                 ".git*",
@@ -13,8 +13,7 @@
         },
         "pull_request": {
             "branches": [
-                "master",
-                "dev"
+                "master"
             ],
             "paths-ignore": [
                 ".git*",
