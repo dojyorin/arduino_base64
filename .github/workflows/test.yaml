@@ -16,7 +16,7 @@ on:
             - '*.properties'
 jobs:
     test:
-        name: 'Test: ${{matrix.board.name}}'
+        name: 'test: ${{matrix.board.name}}'
         runs-on: ubuntu-latest
         strategy:
             fail-fast: true
@@ -28,6 +28,9 @@ jobs:
                     - vendor: adafruit
                       arch: samd
                       name: adafruit_trinket_m0
+                    - vendor: STMicroelectronics
+                      arch: stm32
+                      name: GenH5
                     - vendor: teensy
                       arch: avr
                       name: teensy41
@@ -38,6 +41,9 @@ jobs:
                     - index: https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
                       board:
                         vendor: adafruit
+                    - index: https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json
+                      board:
+                        vendor: STMicroelectronics
                     - index: https://www.pjrc.com/teensy/package_teensy_index.json
                       board:
                         vendor: teensy
