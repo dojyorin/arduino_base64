@@ -1,11 +1,11 @@
 #include "./arduino_base64.hpp"
 
 namespace{
-    constexpr char symbols[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    constexpr char CODE[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
     uint8_t indexOf(char search){
         for(uint8_t i = 0; i < 64; i++){
-            if(symbols[i] == search){
+            if(::CODE[i] == search){
                 return i;
             }
         }
@@ -36,10 +36,10 @@ void base64::encode(const uint8_t* input, size_t inputLength, char* output){
         bit8x3[position++] = *input++;
 
         if(position == 3){
-            to6x4(bit8x3, bit6x4);
+            ::to6x4(bit8x3, bit6x4);
 
             for(const auto &v: bit6x4){
-                *output++ = symbols[v];
+                *output++ = ::CODE[v];
             }
 
             position = 0;
@@ -51,10 +51,10 @@ void base64::encode(const uint8_t* input, size_t inputLength, char* output){
             bit8x3[i] = 0x00;
         }
 
-        to6x4(bit8x3, bit6x4);
+        ::to6x4(bit8x3, bit6x4);
 
         for(uint8_t i = 0; i < position + 1; i++){
-            *output++ = symbols[bit6x4[i]];
+            *output++ = ::CODE[bit6x4[i]];
         }
 
         while(position++ < 3){
@@ -80,10 +80,10 @@ void base64::decode(const char* input, uint8_t* output){
             break;
         }
 
-        bit6x4[position++] = indexOf(*input++);
+        bit6x4[position++] = ::indexOf(*input++);
 
         if(position == 4){
-            to8x3(bit6x4, bit8x3);
+            ::to8x3(bit6x4, bit8x3);
 
             for(const auto &v: bit8x3){
                 *output++ = v;
@@ -98,7 +98,7 @@ void base64::decode(const char* input, uint8_t* output){
             bit6x4[i] = 0x00;
         }
 
-        to8x3(bit6x4, bit8x3);
+        ::to8x3(bit6x4, bit8x3);
 
         for(uint8_t i = 0; i < position - 1; i++){
             *output++ = bit8x3[i];
