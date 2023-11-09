@@ -7,7 +7,7 @@
     },
     "jobs": {
         "release": {
-            "name": "Release: ${{github.ref_name}}",
+            "name": "release: ${{github.ref_name}}",
             "runs-on": "ubuntu-latest",
             "steps": [{
                 "name": "clone repository",
