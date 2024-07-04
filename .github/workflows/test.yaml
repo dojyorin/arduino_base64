@@ -49,7 +49,7 @@ jobs:
                         vendor: teensy
         steps:
             - name: clone repository
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
             - name: install arduino and run test
               uses: arduino/compile-sketches@v1
               with:
