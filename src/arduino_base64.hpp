@@ -7,7 +7,7 @@
 * Convert between binary and base64 encoded string.
 * @see https://github.com/dojyorin/arduino_base64
 */
-namespace base64{
+namespace base64 {
     /**
     * Convert binary to base64 encoded string.
     * If input is string, cast to `uint8_t*`.

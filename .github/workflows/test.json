@@ -31,47 +31,28 @@
                 "matrix": {
                     "board": [{
                         "vendor": "arduino",
+                        "arch": "avr",
+                        "name": "uno"
+                    }, {
+                        "vendor": "arduino",
                         "arch": "samd",
                         "name": "arduino_zero_native"
                     }, {
-                        "vendor": "adafruit",
-                        "arch": "samd",
-                        "name": "adafruit_trinket_m0"
-                    }, {
-                        "vendor": "STMicroelectronics",
-                        "arch": "stm32",
-                        "name": "GenH5"
-                    }, {
-                        "vendor": "teensy",
-                        "arch": "avr",
-                        "name": "teensy41"
+                        "vendor": "arduino",
+                        "arch": "renesas_uno",
+                        "name": "minima"
                     }],
                     "include": [{
                         "index": "https://downloads.arduino.cc/packages/package_index.json",
                         "board": {
                             "vendor": "arduino"
                         }
-                    }, {
-                        "index": "https://adafruit.github.io/arduino-board-index/package_adafruit_index.json",
-                        "board": {
-                            "vendor": "adafruit"
-                        }
-                    }, {
-                        "index": "https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json",
-                        "board": {
-                            "vendor": "STMicroelectronics"
-                        }
-                    }, {
-                        "index": "https://www.pjrc.com/teensy/package_teensy_index.json",
-                        "board": {
-                            "vendor": "teensy"
-                        }
                     }]
                 }
             },
             "steps": [{
                 "name": "clone repository",
-                "uses": "actions/checkout@v3"
+                "uses": "actions/checkout@v4"
             }, {
                 "name": "install arduino and run test",
                 "uses": "arduino/compile-sketches@v1",
