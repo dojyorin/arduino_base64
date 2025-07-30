@@ -2,7 +2,7 @@
 
 void setup() {
     Serial.begin(115200);
-    while(!Serial);
+    while (!Serial) {}
 
     const char input[] = "F3c7EYKkxMgnvO0nB8FWVw==";
     uint8_t output[base64::decodeLength(input)];
