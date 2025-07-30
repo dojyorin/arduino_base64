@@ -4,8 +4,8 @@ namespace {
     constexpr char CODE[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
     uint8_t indexOf(char search) {
-        for(uint8_t i = 0; i < 64; i++) {
-            if(::CODE[i] == search) {
+        for (uint8_t i = 0; i < 64; i++) {
+            if (::CODE[i] == search) {
                 return i;
             }
         }
@@ -27,18 +27,21 @@ namespace {
     }
 }
 
+/**
+* @brief Convert binary to base64-encoded string. If input is string, cast to `uint8_t*`.
+*/
 void base64::encode(const uint8_t* input, size_t inputLength, char* output) {
     uint8_t position = 0;
     uint8_t bit8x3[3] = {};
     uint8_t bit6x4[4] = {};
 
-    while(inputLength--) {
+    while (inputLength--) {
         bit8x3[position++] = *input++;
 
-        if(position == 3) {
+        if (position == 3) {
             ::to6x4(bit8x3, bit6x4);
 
-            for(const auto &v: bit6x4) {
+            for (const auto &v: bit6x4) {
                 *output++ = ::CODE[v];
             }
 
@@ -46,18 +49,18 @@ void base64::encode(const uint8_t* input, size_t inputLength, char* output) {
         }
     }
 
-    if(position) {
-        for(uint8_t i = position; i < 3; i++) {
+    if (position) {
+        for (uint8_t i = position; i < 3; i++) {
             bit8x3[i] = 0x00;
         }
 
         ::to6x4(bit8x3, bit6x4);
 
-        for(uint8_t i = 0; i < position + 1; i++) {
+        for (uint8_t i = 0; i < position + 1; i++) {
             *output++ = ::CODE[bit6x4[i]];
         }
 
-        while(position++ < 3) {
+        while (position++ < 3) {
             *output++ = '=';
         }
     }
@@ -65,27 +68,33 @@ void base64::encode(const uint8_t* input, size_t inputLength, char* output) {
     *output = '\0';
 }
 
+/**
+* @brief Calculate number of output characters.
+*/
 size_t base64::encodeLength(size_t inputLength) {
     return (inputLength + 2 - ((inputLength + 2) % 3)) / 3 * 4 + 1;
 }
 
+/**
+* @brief Convert base64-encoded string to binary. If output is string, cast to `char*`.
+*/
 void base64::decode(const char* input, uint8_t* output) {
     auto inputLength = strlen(input);
     uint8_t position = 0;
     uint8_t bit8x3[3] = {};
     uint8_t bit6x4[4] = {};
 
-    while(inputLength--) {
-        if(*input == '=') {
+    while (inputLength--) {
+        if (*input == '=') {
             break;
         }
 
         bit6x4[position++] = ::indexOf(*input++);
 
-        if(position == 4) {
+        if (position == 4) {
             ::to8x3(bit6x4, bit8x3);
 
-            for(const auto &v: bit8x3) {
+            for (const auto &v: bit8x3) {
                 *output++ = v;
             }
 
@@ -93,26 +102,29 @@ void base64::decode(const char* input, uint8_t* output) {
         }
     }
 
-    if(position) {
-        for(uint8_t i = position; i < 4; i++) {
+    if (position) {
+        for (uint8_t i = position; i < 4; i++) {
             bit6x4[i] = 0x00;
         }
 
         ::to8x3(bit6x4, bit8x3);
 
-        for(uint8_t i = 0; i < position - 1; i++) {
+        for (uint8_t i = 0; i < position - 1; i++) {
             *output++ = bit8x3[i];
         }
     }
 }
 
+/**
+* @brief Calculate number of output bytes.
+*/
 size_t base64::decodeLength(const char* input) {
     auto inputLength = strlen(input);
     uint8_t equal = 0;
 
     input += inputLength - 1;
 
-    while(*input-- == '=') {
+    while (*input-- == '=') {
         equal++;
     }
 
