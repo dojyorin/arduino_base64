@@ -12,6 +12,4 @@ void setup() {
     Serial.println(output);
 }
 
-void loop() {
-    // nop
-}
+void loop() {}
