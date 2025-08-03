@@ -14,4 +14,4 @@ String can be convert by cast them to `uint8_t*`, but that not what this library
 If you want to convert string, use this library and implement wrapper functions yourself.
 
 ## API
-See doxygen comments in [`main.cpp`](./src/main.cpp) for details.
+See [header](./src/arduino_base64.hpp) for details.

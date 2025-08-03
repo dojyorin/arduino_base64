@@ -11,6 +11,4 @@ void setup() {
     Serial.println((const char*)output);
 }
 
-void loop() {
-    // nop
-}
+void loop() {}

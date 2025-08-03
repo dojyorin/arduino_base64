@@ -28,8 +28,8 @@ namespace {
 }
 
 /**
-* @brief Convert binary to base64-encoded string. If input is string, cast to `uint8_t*`.
-*/
+ * @brief Convert binary to base64-encoded string. If input is string, cast to `uint8_t*`.
+ */
 void base64::encode(const uint8_t* input, size_t inputLength, char* output) {
     uint8_t position = 0;
     uint8_t bit8x3[3] = {};
@@ -69,15 +69,15 @@ void base64::encode(const uint8_t* input, size_t inputLength, char* output) {
 }
 
 /**
-* @brief Calculate number of output characters.
-*/
+ * @brief Calculate number of output characters.
+ */
 size_t base64::encodeLength(size_t inputLength) {
     return (inputLength + 2 - ((inputLength + 2) % 3)) / 3 * 4 + 1;
 }
 
 /**
-* @brief Convert base64-encoded string to binary. If output is string, cast to `char*`.
-*/
+ * @brief Convert base64-encoded string to binary. If output is string, cast to `char*`.
+ */
 void base64::decode(const char* input, uint8_t* output) {
     auto inputLength = strlen(input);
     uint8_t position = 0;
@@ -116,8 +116,8 @@ void base64::decode(const char* input, uint8_t* output) {
 }
 
 /**
-* @brief Calculate number of output bytes.
-*/
+ * @brief Calculate number of output bytes.
+ */
 size_t base64::decodeLength(const char* input) {
     auto inputLength = strlen(input);
     uint8_t equal = 0;
